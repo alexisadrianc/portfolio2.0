@@ -3663,7 +3663,7 @@ input[type=button].btn-block,input[type=reset].btn-block,input[type=submit].btn-
 
 .custom-control-input:checked~.custom-control-label::before {
     color: #fff;
-    border-color: #f5ba4b;
+    border-color: #3D47FE;
     background-color: #f5ba4b
 }
 
@@ -3672,7 +3672,7 @@ input[type=button].btn-block,input[type=reset].btn-block,input[type=submit].btn-
 }
 
 .custom-control-input:focus:not(:checked)~.custom-control-label::before {
-    border-color: #f5ba4b
+    border-color: #3D47FE
 }
 
 .custom-control-input:not(:disabled):active~.custom-control-label::before {
@@ -7859,6 +7859,11 @@ a.bg-dark:focus,a.bg-dark:hover,button.bg-dark:focus,button.bg-dark:hover {
     width: 100%!important
 }
 
+img .w-100 {
+    max-width: 100%;
+    height: auto;
+}
+
 .w-auto {
     width: auto!important
 }
@@ -11358,7 +11363,7 @@ a.bg-dark:focus,a.bg-dark:hover,button.bg-dark:focus,button.bg-dark:hover {
 }
 
 .text-primary {
-    color: #f5ba4b!important
+    color: #3D47FE!important
 }
 
 a.text-primary:focus,a.text-primary:hover {
@@ -12035,8 +12040,8 @@ label {
 
 .form-control:focus+.input-group-append .input-group-text {
     background-color: #fff;
-    border-color: #f5ba4b;
-    color: #f5ba4b
+    border-color: #3D47FE;
+    color: #3D47FE
 }
 
 .form-control:focus+.input-group-append .input-group-icon>path {
@@ -12676,7 +12681,7 @@ body,html {
     margin-right: 1em;
     font-family: 'Font Awesome 5 Free';
     font-weight: 900;
-    color: #f5ba4b
+    color: #3D47FE
 }
 
 .bg-slider {
@@ -12851,7 +12856,7 @@ body,html {
     position: absolute;
     left: 50%;
     height: 5rem;
-    border-left: 2px solid #f5ba4b;
+    border-left: 2px solid #3D47FE;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%)
 }
