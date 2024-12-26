@@ -2600,14 +2600,14 @@ a.btn.disabled,fieldset:disabled a.btn {
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #f3ac27;
-    border-color: #f2a71b
+    background-color: #3D47FE;
+    border-color: #3a47FE
 }
 
 .btn-primary.focus,.btn-primary:focus {
     color: #fff;
-    background-color: #f3ac27;
-    border-color: #f2a71b;
+    background-color: #3D47FE;
+    border-color: #3a47FE;
     box-shadow: 0 0 0 .2rem rgba(247,196,102,.5)
 }
 
