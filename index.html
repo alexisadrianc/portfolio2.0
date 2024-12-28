@@ -164,7 +164,7 @@
               </ul>
   
               <!-- Button -->
-              <a href="https://drive.google.com/file/d/1pgOAPLGZzdEHtkF0RN9h0xDHmqfjl3qm/view?usp=drive_link" target="_blank" class="btn btn-outline-primary">
+              <a href="https://drive.google.com/file/d/1pgOAPLGZzdEHtkF0RN9h0xDHmqfjl3qm/view?usp=drive_link" target="_blank" class="btn btn-primary btn-transition">
                 Resume
               </a>
           
@@ -339,7 +339,7 @@
                 </p>
 
                 <div class="d-grid">
-                  <a class="btn btn-primary btn-transition" href="#">Preview <i class="fa-eye-slash ms-1"></i></a>
+                  <a class="btn btn-primary btn-transition" href="#">Preview <i class="fab fa-eye ms-1"></i></a>
                 </div>
 
               </div>
@@ -375,7 +375,7 @@
                 </p>
 
                 <div class="d-grid">
-                  <a class="btn btn-primary btn-transition" href="https://nerlaxshop.com/" target="_blank">Preview <i class="fa-eye-slash ms-1"></i></a>
+                  <a class="btn btn-primary btn-transition" href="https://nerlaxshop.com/" target="_blank">Preview <i class="fab fa-eye ms-1"></i></a>
                 </div>
 
               </div>
@@ -701,7 +701,7 @@
             </p>
 
             <!-- Form -->
-            <form>
+            <form id="contactForm" action="php/send_email.php" method="POST">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   
@@ -753,7 +753,7 @@
                 <div class="col-12">
                   
                   <!-- Submit -->
-                  <button type="submit" class="btn btn-outline-primary">
+                  <button type="submit" class="btn btn-primary btn-transition">
                     Send message
                   </button>
 
@@ -766,6 +766,25 @@
               </div>
             </form>
             
+            <!-- Modal -->
+            <div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="responseModalLabel">Message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <!-- Aquí irá el mensaje dinámico -->
+                    <p id="responseMessage"></p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div> <!-- / .row -->
       </div> <!-- / .container -->
@@ -885,6 +904,43 @@
 
     <!-- Theme JS -->
     <script src="assets/js/theme.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Función para obtener parámetros de la URL
+        function getUrlParameter(name) {
+          name = name.replace(/[\\[]/, "\\[").replace(/[\\]]/, "\\]");
+          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+          var results = regex.exec(location.search);
+          return results === null ? "" : decodeURIComponent(results[1].replace(/\\+/g, " "));
+        }
+    
+        // Obtener el mensaje y el estado desde la URL
+        const message = getUrlParameter("message");
+        const status = getUrlParameter("status");
+    
+        // Si hay un mensaje, muestra el modal
+        if (message) {
+          // Asigna el mensaje al modal
+          document.getElementById("responseMessage").innerText = message;
+    
+          // Cambia el color del modal según el estado
+          const modalContent = document.querySelector(".modal-content");
+          if (status === "success") {
+            modalContent.classList.add("border-success");
+          } else if (status === "danger") {
+            modalContent.classList.add("border-danger");
+          }
+    
+          // Muestra el modal
+          const responseModal = new bootstrap.Modal(document.getElementById("responseModal"));
+          responseModal.show();
+    
+          // Limpia los parámetros de la URL después de mostrar el modal
+          window.history.replaceState(null, null, window.location.pathname);
+        }
+      });
+    </script>
 
   
 </body></html>
