@@ -13866,3 +13866,46 @@ body,html {
     margin-left: -25px;
   }
   
+  /* ================================= */
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hero-background {
+    background: linear-gradient(-45deg, #ffcc00, #ff9900, #ff6600, #ff3300);
+    background-size: 300% 300%;
+    animation: gradientMove 6s ease infinite;
+}
+
+.hero-text {
+    animation: fadeIn 1.2s ease-out;
+}
+
+.cta-button {
+  display: inline-block;
+  background: transparent;
+  padding: 0.6125rem 2rem;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 0.3125rem;
+  border: 0.0625rem solid #f5ba4b;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.cta-button:hover {
+  background: #6c63ff;
+  border: solid #6c63ff;
+  color: white;
+  text-decoration: none;
+  transform: scale(1.1); /* Slight zoom */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
