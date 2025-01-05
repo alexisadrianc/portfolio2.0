@@ -7864,6 +7864,14 @@ img .w-100 {
     height: auto;
 }
 
+.w-100:hover {
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    -webkit-transform: translateY(-.25rem);
+    transform: scale(1.2)
+    
+}
+
 .w-auto {
     width: auto!important
 }

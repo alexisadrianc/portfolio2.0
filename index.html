@@ -25,6 +25,50 @@
     <!-- Theme CSS -->
     <link rel="stylesheet" href="assets/css/theme.min.css">
 
+    <style>
+      @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes gradientMove {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+      }
+
+      .hero-background {
+          background: linear-gradient(-45deg, #ffcc00, #ff9900, #ff6600, #ff3300);
+          background-size: 300% 300%;
+          animation: gradientMove 6s ease infinite;
+      }
+
+      .hero-text {
+          animation: fadeIn 1.2s ease-out;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: transparent;
+        padding: 0.6125rem 2rem;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 0.3125rem;
+        border: 0.0625rem solid #f5ba4b;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+      }
+
+      .cta-button:hover {
+        background: #6c63ff;
+        border: solid #6c63ff;
+        color: white;
+        text-decoration: none;
+        transform: scale(1.1); /* Slight zoom */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+  </style>
+
     <title>Welcome to My Portfolio</title>
   <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/59/3a/intl/es_ALL/common.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/59/3a/intl/es_ALL/util.js"></script></head>
   <body>
@@ -88,7 +132,7 @@
 
     <!-- HOME
     ================================================== -->
-    <section class="section section-top section-full" id="home">
+    <section class="section section-top section-full hero-background" id="home">
 
       <!-- Cover -->
       <div class="bg-cover" style="background-image: url(assets/images/42.jpg);"></div>
@@ -106,19 +150,18 @@
           <div class="col-md-8 col-lg-7">
 
             <!-- Heading -->
-            <h1 class="text-white text-center mb-4 animate" data-toggle="animation" data-animation="fadeUp" data-animation-order="1" data-animation-trigger="load">
-              <span class="pt-0">Hi! I'm Alexis Cabrera,</span>
-            </h1>
+            <h1 class="text-white text-center mb-4 hero-text" id="hero-title"></h1>
 
             <!-- Subheading -->
-            <p class="lead text-white text-muted text-center mb-5 animate" data-toggle="animation" data-animation="fadeUp" data-animation-order="2" data-animation-trigger="load">
-              Software developer with more than 12 years of experience creating innovative solutions to simplify people's lives.
+            <p class="lead text-white text-muted text-center mb-5 hero-text">
+              I'm Alexis Cabrera, a software developer with over 12 years of experience creating technology that streamlines processes and drives impact. 
+              Discover how I can help transform your business.
             </p>
 
             <!-- Button -->
             <p class="text-center mb-0 animate" data-toggle="animation" data-animation="fadeUp" data-animation-order="3" data-animation-trigger="load">
-              <a href="https://themes.getbootstrap.com/product/incline-landing-page-set/" target="_blank" class="btn btn-outline-primary text-white">
-                Purchase now
+              <a href="#portfolio" class="btn btn-primary btn-transition text-white cta-button">
+                Explore My Work
               </a>
             </p>
 
@@ -155,16 +198,15 @@
               <!-- Content -->
               <ul class="list-iconed text-muted" style="width: 35em;">
                 <li >
-                    <li>Hi! I'm Alexis Cabrera</li>
-                    <li>I’m a computer engineer with over 12 years of experience in software and web development. I specialize in building intuitive and scalable 
-                        solutions, combining expertise in Odoo ERP with technologies like Python and JavaScript.</li>
+                    <li>I’m a computer engineer passionate about turning ideas into intuitive and scalable software solutions. I specialize in optimizing processes and developing applications 
+                      that simplify life.</li>
 
-                    <li>I’m passionate about optimizing processes and creating applications that make life easier. Let’s connect and bring your ideas to life!</li>
+                    <li>Let’s team up and create something awesome—you bring the vision, I’ll bring the code!</li>
                 </li>
               </ul>
   
               <!-- Button -->
-              <a href="https://drive.google.com/file/d/1pgOAPLGZzdEHtkF0RN9h0xDHmqfjl3qm/view?usp=drive_link" target="_blank" class="btn btn-primary btn-transition">
+              <a href="https://drive.google.com/file/d/1NLJkYXhW1lcWHbJck99DqaxOv2CoZouS/view?usp=sharing" target="_blank" class="btn btn-primary btn-transition cta-button">
                 Resume
               </a>
           
@@ -200,23 +242,27 @@
             </div>
           </div> <!-- / .row -->
           <div class="row text-center justify-content-center">
-              <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/1.png" alt=""></div>
-              <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/2.png" alt=""></div>
-              <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/3.png" alt=""></div>
-              <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/4.png" alt=""></div>
-              <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/5.png" alt=""></div>
+            <!-- Primera fila: 5 imágenes -->
+            <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/1.png" alt=""></div>
+            <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/2.png" alt=""></div>
+            <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/3.png" alt=""></div>
+            <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/4.png" alt=""></div>
+            <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/5.png" alt=""></div>
+          </div>
+          <div class="row text-center justify-content-center">
+              <!-- Segunda fila: 5 imágenes -->
               <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/6.png" alt=""></div>
               <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/7.png" alt=""></div>
               <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/8.png" alt=""></div>
               <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/9.png" alt=""></div>
               <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/10.png" alt=""></div>
+          </div>
+          <div class="row text-center justify-content-center">
+              <!-- Tercera fila: 4 imágenes -->
               <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/11.png" alt=""></div>
               <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/12.png" alt=""></div>
               <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/13.png" alt=""></div>
               <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/14.png" alt=""></div>
-              <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/15.png" alt=""></div>
-              <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/16.png" alt=""></div>
-              <div class="col-4 col-md-2 mb-5"><img class="w-100" src="assets/images/tools/17.png" alt=""></div>
           </div> <!-- / .row -->
         </div> <!-- / .container -->
   
@@ -339,7 +385,7 @@
                 </p>
 
                 <div class="d-grid">
-                  <a class="btn btn-primary btn-transition" href="#">Preview <i class="fab fa-eye ms-1"></i></a>
+                  <a class="btn btn-primary btn-transition cta-button" href="#">Preview <i class="fab fa-eye ms-1"></i></a>
                 </div>
 
               </div>
@@ -354,7 +400,7 @@
           
               <!-- Image -->
               <div class="card-img-top">
-                <img src="assets/images/58.png" alt="Fullpage scrolling" class="img-fluid">
+                <img src="assets/images/58.png" alt="Nerlax Website" class="img-fluid">
               </div>
 
               <!-- Body -->
@@ -371,11 +417,11 @@
 
                 <!-- Text -->
                 <p class="card-text text-muted">
-                  A landing page created with fullscreen scrolling sections.
+                  It’s an e-commerce platform offering digital products focused on wellness and relaxation.
                 </p>
 
                 <div class="d-grid">
-                  <a class="btn btn-primary btn-transition" href="https://nerlaxshop.com/" target="_blank">Preview <i class="fab fa-eye ms-1"></i></a>
+                  <a class="btn btn-primary btn-transition cta-button" href="https://nerlaxshop.com/" target="_blank">Preview <i class="fab fa-eye ms-1"></i></a>
                 </div>
 
               </div>
@@ -399,7 +445,7 @@
                 <div class="mb-2">
                   <!-- Title -->
                   <h4 class="card-title">
-                    Service landing
+                    Odoo ERP Customization
                   </h4>
                   
                   <span class="badge bg-light-subtle border border-light-subtle text-light-emphasis rounded-2">Odoo</span>
@@ -407,7 +453,7 @@
 
                 <!-- Body -->
                 <p class="card-text text-muted">
-                  You can use this page to promote your business or a service.
+                  Custom setup to streamline your business processes with Odoo ERP.
                 </p>
 
               </div>
@@ -753,7 +799,7 @@
                 <div class="col-12">
                   
                   <!-- Submit -->
-                  <button type="submit" class="btn btn-primary btn-transition">
+                  <button type="submit" class="btn btn-primary btn-transition cta-button">
                     Send message
                   </button>
 
@@ -775,7 +821,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <!-- Aquí irá el mensaje dinámico -->
                     <p id="responseMessage"></p>
                   </div>
                   <div class="modal-footer">
@@ -819,7 +864,7 @@
               <div class="row g-4">
                 <!-- Link block -->
                 <div class="col-6 col-md-5">
-                  <h5 class="mb-2 mb-md-4 text-white">Quick links</h5>
+                  <h5 class="mb-2 mb-md-3 text-white">Quick links</h5>
                   <ul class="nav flex-column">
                     <li class="nav-item"><a class="text-white pt-0" href="#home">Home</a></li>
                     <li class="nav-item"><a class="text-white" href="#about_me">About Me</a></li>
@@ -834,10 +879,12 @@
                 <div class="col-md-7">
                   
                   <!-- Social buttons -->
-                  <h5 class="mb-2 mb-md-4 text-white">More Service</h5>
+                  <h5 class="mb-2 mb-md-3 text-white">More Service</h5>
       
-                  <ul class="list-inline mb-0 mt-3">                    
-                    <li class="nav-item"><a class="text-white pt-0" href="#">Business Process Automation</span></a></li>
+                  <ul class="list-inline mb-0 mt-3">
+                    <li class="nav-item"><a class="text-white pt-0" href="#">Landing pages</span></a></li>
+                    <li class="nav-item"><a class="text-white" href="#">Odoo ERP Implementation and Customization</span></a></li>   
+                    <li class="nav-item"><a class="text-white" href="#">Support pages</span></a></li>
                     <li class="nav-item"><a class="text-white" href="#">Database Optimization</a></li>
                     <li class="nav-item"><a class="text-white" href="#">API Integration</a></li>
                     <li class="nav-item"><a class="text-white" href="#">Training and Workshops</a></li>
@@ -941,6 +988,20 @@
         }
       });
     </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          const text = "Empowering businesses with innovative digital solutions.";
+          let i = 0;
+          function typeEffect() {
+              if (i < text.length) {
+                  document.getElementById("hero-title").innerHTML += text.charAt(i);
+                  i++;
+                  setTimeout(typeEffect, 50);
+              }
+          }
+          typeEffect();
+      });
+  </script>
 
   
 </body></html>
