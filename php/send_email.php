@@ -1,10 +1,13 @@
 <?php
-session_start(); // Inicia sesión para manejar los mensajes
 // Cargar PHPMailer (usando Composer)
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require '../vendor/autoload.php'; // Ruta relativa al autoloader
+
+header('Content-Type: application/json'); // Asegura que la respuesta sea JSON
+
+$response = ["status" => "error", "message" => "Unknown error occurred."];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $name = htmlspecialchars($_POST['contact-name']);
@@ -14,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $mail = new PHPMailer(true);
 
     try {
+        // Configuración del servidor SMTP
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
@@ -22,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
+        // Configuración del correo
         $mail->setFrom('alexis.adrianc@gmail.com', 'Portfolio Alexis');
         $mail->addAddress('alexis.adrianc@gmail.com');
         $mail->Subject = 'Nuevo mensaje de contacto';
@@ -35,13 +40,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         ";
 
         $mail->send();
-        $message = 'El mensaje se envió correctamente.';
-        $status = 'success';
+        $response = ["status" => "success", "message" => "Your message has been sent successfully!"];
     } catch (Exception $e) {
-        $message = "Error al enviar el mensaje. Mailer Error: {$mail->ErrorInfo}";
-        $status = 'danger';
+        $response = ["status" => "error", "message" => "Error sending message. Mailer Error: {$mail->ErrorInfo}"];
     }
-
-    header("Location: ../index.html?message=" . urlencode($message) . "&status=" . $status);
-    exit();
 }
+
+echo json_encode($response); // Enviar respuesta JSON al JavaScript
+exit();
+

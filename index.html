@@ -21,9 +21,55 @@
     <link rel="stylesheet" href="assets/libs/highlightjs/styles/codepen-embed.css">
     <link rel="stylesheet" href="assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="assets/libs/incline-icons/style.min.css">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="assets/css/theme.min.css">
+
+    <style>
+      @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes gradientMove {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+      }
+
+      .hero-background {
+          background: linear-gradient(-45deg, #ffcc00, #ff9900, #ff6600, #ff3300);
+          background-size: 300% 300%;
+          animation: gradientMove 6s ease infinite;
+      }
+
+      .hero-text {
+          animation: fadeIn 1.2s ease-out;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: transparent;
+        padding: 0.6125rem 2rem;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 0.3125rem;
+        border: 0.0625rem solid #f5ba4b;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+      }
+
+      .cta-button:hover {
+        background: #6c63ff;
+        border: solid #6c63ff;
+        color: white;
+        text-decoration: none;
+        transform: scale(1.1); /* Slight zoom */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+    </style>
 
     <title>Welcome to My Portfolio</title>
   <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/59/3a/intl/es_ALL/common.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/59/3a/intl/es_ALL/util.js"></script></head>
@@ -768,19 +814,19 @@
               </div>
             </form>
             
-            <!-- Modal -->
+            <!-- Modal de Mensaje -->
             <div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="responseModalLabel">Message</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <h5 class="modal-title" id="responseModalLabel">Message</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <p id="responseMessage"></p>
+                      <p id="responseMessage"></p>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                   </div>
                 </div>
               </div>
@@ -835,7 +881,7 @@
                 <div class="col-md-7">
                   
                   <!-- Social buttons -->
-                  <h5 class="mb-2 mb-md-3 text-white">More Service</h5>
+                  <h5 class="mb-2 mb-md-3 text-white">Service</h5>
       
                   <ul class="list-inline mb-0 mt-3">
                     <li class="nav-item"><a class="text-white pt-0" href="#">Landing pages</span></a></li>
@@ -904,44 +950,51 @@
     <script src="assets/libs/fullpage.js/vendors/scrolloverflow.min.js"></script>
     <script src="assets/libs/fullpage.js/dist/fullpage.min.js"></script>
     <script src="assets/libs/highlightjs/highlight.pack.min.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Theme JS -->
     <script src="assets/js/theme.min.js"></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Función para obtener parámetros de la URL
-        function getUrlParameter(name) {
-          name = name.replace(/[\\[]/, "\\[").replace(/[\\]]/, "\\]");
-          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-          var results = regex.exec(location.search);
-          return results === null ? "" : decodeURIComponent(results[1].replace(/\\+/g, " "));
-        }
-    
-        // Obtener el mensaje y el estado desde la URL
-        const message = getUrlParameter("message");
-        const status = getUrlParameter("status");
-    
-        // Si hay un mensaje, muestra el modal
-        if (message) {
-          // Asigna el mensaje al modal
-          document.getElementById("responseMessage").innerText = message;
-    
-          // Cambia el color del modal según el estado
-          const modalContent = document.querySelector(".modal-content");
-          if (status === "success") {
-            modalContent.classList.add("border-success");
-          } else if (status === "danger") {
-            modalContent.classList.add("border-danger");
-          }
-    
-          // Muestra el modal
-          const responseModal = new bootstrap.Modal(document.getElementById("responseModal"));
-          responseModal.show();
-    
-          // Limpia los parámetros de la URL después de mostrar el modal
-          window.history.replaceState(null, null, window.location.pathname);
-        }
+          document.getElementById("contactForm").addEventListener("submit", function (event) {
+              event.preventDefault(); // Evitar que la página se recargue
+              
+              let formData = new FormData(this); // Capturar los datos del formulario
+
+              fetch("php/send_email.php", {
+                  method: "POST",
+                  body: formData
+              })
+              .then(response => response.json())
+              .then(data => {
+                  if (data.status === "success") {
+                      Swal.fire({
+                          title: "Success!",
+                          text: data.message,
+                          icon: "success",
+                          confirmButtonText: "OK"
+                      });
+                      document.getElementById("contactForm").reset(); // Limpiar el formulario
+                  } else {
+                      Swal.fire({
+                          title: "Error!",
+                          text: data.message,
+                          icon: "error",
+                          confirmButtonText: "Try Again"
+                      });
+                  }
+              })
+              .catch(error => {
+                  Swal.fire({
+                      title: "Error!",
+                      text: "Something went wrong. Please try again later.",
+                      icon: "error",
+                      confirmButtonText: "OK"
+                  });
+              });
+          });
       });
     </script>
     <script>
@@ -957,7 +1010,7 @@
           }
           typeEffect();
       });
-  </script>
+    </script>
 
   
 </body></html>
