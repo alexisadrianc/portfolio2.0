@@ -29,14 +29,39 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Configuración del correo
         $mail->setFrom('alexis.adrianc@gmail.com', 'Portfolio Alexis');
         $mail->addAddress('alexis.adrianc@gmail.com');
-        $mail->Subject = 'Nuevo mensaje de contacto';
+        // ✅ Asunto optimizado
+        $mail->Subject = "¡Nuevo mensaje desde tu Portfolio! - {$name} te ha contactado";
+
 
         $mail->isHTML(true);
         $mail->Body = "
-            <h3>Nuevo mensaje de contacto</h3>
-            <p><strong>Nombre:</strong> {$name}</p>
-            <p><strong>Email:</strong> {$email}</p>
-            <p><strong>Mensaje:</strong> {$message}</p>
+                <div style='font-family: Arial, sans-serif; padding: 20px; background-color: #f8f9fa; border-radius: 8px; border: 1px solid #ddd; max-width: 600px; margin: auto;'>
+                <h2 style='color: #007BFF; text-align: center;'>Nuevo mensaje de contacto</h2>
+                
+                <table style='width: 100%; border-collapse: collapse;'>
+                    <tr>
+                        <td style='background-color: #007BFF; color: white; padding: 10px; font-weight: bold; text-align: center;'>
+                            Detalles del Mensaje
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style='padding: 10px; background-color: white;'>
+                            <p><strong>📛 Nombre:</strong> {$name}</p>
+                            <p><strong>📧 Email:</strong> {$email}</p>
+                            <p><strong>📝 Mensaje:</strong></p>
+                            <blockquote style='border-left: 3px solid #007BFF; padding-left: 10px; margin-left: 0; color: #555;'>
+                                {$message}
+                            </blockquote>
+                        </td>
+                    </tr>
+                </table>
+
+                <hr style='border: none; border-top: 1px solid #ddd;'>
+                
+                <p style='text-align: center; color: #888; font-size: 14px;'>
+                    📬 Este mensaje fue enviado desde el <strong>Portfolio de Alexis</strong>.
+                </p>
+            </div>
         ";
 
         $mail->send();
